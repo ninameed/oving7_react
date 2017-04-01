@@ -58,6 +58,28 @@ app.post('/customers', (request, response) => {
   response.sendStatus(400);
 });
 
+app.put('/customers/:id', (request, response) => {
+  for (var i = 0; i < customers.length; i++){
+    if (customers[i].id == request.params.id){
+      customers[i] = new Customer(request.body.name, request.body.city);
+        response.send(customers[i].id.toString());
+        return;
+    }
+  }
+  response.sendStatus(404);
+});
+
+app.delete('/customers/:id', (request, response) => {
+  for (var i = 0; i < customers.length; i++){
+    if (customers[i].id == request.params.id){
+      customers[i].delete();
+      response.send(customers);
+      return;
+    }
+  }
+  response.sendStatus(404);
+});
+
 //Start the web server
 //Open for instance http://localhost:3000 in a web browser
 var server = app.listen(3000, () => {
