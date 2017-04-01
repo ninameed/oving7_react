@@ -72,7 +72,7 @@ app.put('/customers/:id', (request, response) => {
 app.delete('/customers/:id', (request, response) => {
   for (var i = 0; i < customers.length; i++){
     if (customers[i].id == request.params.id){
-      customers[i].delete();
+      customers.splice(i,1);
       response.send(customers);
       return;
     }
