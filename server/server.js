@@ -61,7 +61,8 @@ app.post('/customers', (request, response) => {
 app.put('/customers/:id', (request, response) => {
   for (var i = 0; i < customers.length; i++){
     if (customers[i].id == request.params.id){
-      customers[i] = customer[i].request.body.name, customer[i].request.body.city;
+      customers[i].name = request.body.name;
+      customer[i].city = request.body.city;
         response.send(customers[i].id.toString());
         return;
     }
